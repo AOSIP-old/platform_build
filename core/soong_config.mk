@@ -90,7 +90,10 @@ $(SOONG_VARIABLES): FORCE aosip_soong
 	echo ''; \
 	echo '    "DeviceKernelHeaders": $(call json_list,$(strip $(TARGET_PROJECT_SYSTEM_INCLUDES))),'; \
 	echo ''; \
-	echo '    "BoardUsesQTIHardware":  $(if $(BOARD_USES_QTI_HARDWARE),true,false)';  \
+	echo '    "BoardUsesQTIHardware":  $(if $(BOARD_USES_QTI_HARDWARE),true,false),'; \
+	echo '    "QTIAudioPath":  "$(call project-path-for,qcom-audio)",'; \
+	echo '    "QTIDisplayPath":  "$(call project-path-for,qcom-display)",'; \
+	echo '    "QTIMediaPath":  "$(call project-path-for,qcom-media)"';  \
 	echo '}') >> $(SOONG_VARIABLES_TMP); \
 	if ! cmp -s $(SOONG_VARIABLES_TMP) $(SOONG_VARIABLES); then \
 	  mv $(SOONG_VARIABLES_TMP) $(SOONG_VARIABLES); \
